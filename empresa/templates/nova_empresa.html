@@ -68,7 +68,9 @@
           <div class="col-md">
             <label>Tecnologias usadas:</label>
             <select class="form-control" name="tecnologias" multiple>
-              <option value=""></option>
+              {% for tech in techs %}
+              <option value="{{tech.id}}">{{tech.tecnologia}}</option>
+              {% endfor %}
             </select>
           </div>
         </div>
