@@ -6,7 +6,10 @@
     <div class="header">
       <h3 class="titulo">Nova empresa</h3>
     </div>
-
+    {% if messages %} {% for message in messages %}
+    <br />
+    <section class="alert {{message.tags}}">{{message}}</section>
+    {% endfor %} {% endif %}
     <div class="body-box">
       <form
         action="{% url 'nova_empresa' %}"
