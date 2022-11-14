@@ -111,14 +111,34 @@
   <div class="container">
     <div class="row">
       <h3 class="titulo">Histórico de e-mails</h3>
-
+      {% if not emails %}
       <div class="col-md">
         <div class="box-email">
-          <div class="header-email">Assunto</div>
-
-          <div class="body-email">Corpo do email</div>
+          <div class="header-email">Nenhum email enviado até o momento!</div>
         </div>
       </div>
+      {% endif %} {% for email in emails%}
+      <div class="col-md">
+        <div class="box-email">
+          <div class="header-email">
+            {% if email.enviado %}
+            <img
+              alt="Enviado com sucesso!"
+              title="Enviado com sucesso!"
+              src="{% static 'empresa/img/flag_green.png' %}"
+            />
+            {% else %}
+            <img
+              alt="Falha no envio!"
+              title="Falha no envio!"
+              src="{% static 'empresa/img/flag_red.png' %}"
+            />
+            {% endif %} &nbsp&nbsp{{empresa.qtd_vagas}} {{email.assunto}}
+          </div>
+          <div class="body-email">{{email.corpo}}</div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
