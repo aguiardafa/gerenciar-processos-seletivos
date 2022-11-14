@@ -39,3 +39,14 @@ label{
 .paragrafo-orange{
     color: #ED8554;
 }
+
+.btn-titulo-vagas{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-titulo-vagas:hover{
+    text-decoration: none;
+    color: #ED8554;
+}
