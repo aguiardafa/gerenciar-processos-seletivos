@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.messages import constants
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Tecnologias, Empresa
 
@@ -61,7 +61,7 @@ def empresas(request):
         empresas = empresas.filter(nome__icontains=nome_filtrar)
 
     tecnologias = Tecnologias.objects.all()
-    return render(request, 'empresa.html', {'empresas': empresas, 'tecnologias': tecnologias})
+    return render(request, 'empresas.html', {'empresas': empresas, 'tecnologias': tecnologias})
 
 
 def excluir_empresa(request, id):
@@ -70,3 +70,8 @@ def excluir_empresa(request, id):
     messages.add_message(request, constants.SUCCESS,
                          'Empresa excluída com sucesso')
     return redirect('/home/empresas')
+
+
+def empresa(request, id):
+    empresa_unica = get_object_or_404(Empresa, id=id)
+    return render(request, 'empresa.html', {'empresa': empresa_unica})

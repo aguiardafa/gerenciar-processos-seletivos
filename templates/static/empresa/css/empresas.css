@@ -78,3 +78,14 @@
     border-radius: 10px;
     font-weight: bold;
 }
+
+.btn-nome-empresas{
+    text-decoration: none;
+    color: #7D2948;
+    font-weight: bold;
+}
+
+.btn-nome-empresas:hover{
+    text-decoration: none;
+    color: #631f38;
+}
