@@ -8,7 +8,9 @@
       <section class="alert {{message.tags}}">{{message}}</section>
       {% endfor %} {% endif %}
       <h2 class="titulo">Gerenciar empresas</h2>
-      <a class="btn-nova-empresa">Nova empresa</a>
+      <a class="btn-nova-empresa" href="{% url 'nova_empresa' %}"
+        >Nova empresa</a
+      >
     </div>
     <div class="borda-box"></div>
     <div class="body-box">
@@ -67,7 +69,9 @@
           </td>
           <td>Quantidade de vagas</td>
           <td>
-            <a class="btn-excluir">Excluir empresa</a>
+            <a class="btn-excluir" href="{% url 'excluir_empresa' empresa.id %}"
+              >Excluir empresa</a
+            >
           </td>
         </tr>
         {% endfor %}

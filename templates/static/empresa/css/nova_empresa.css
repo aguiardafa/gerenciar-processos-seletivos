@@ -44,3 +44,19 @@
         width: 80vw;
     }
 }
+
+.btn-empresas{
+    float: right;
+    text-decoration: none;
+    color: white;
+    background-color: #7D2948;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-empresas:hover{
+    color: white;
+    text-decoration: none;
+    background-color: #631f38;
+}
