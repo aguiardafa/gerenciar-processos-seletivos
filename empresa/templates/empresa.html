@@ -14,7 +14,8 @@
     </div>
     <div class="borda-box"></div>
     <div class="body-box">
-      <form>
+      <form action="{% url 'empresa' %}" method="GET">
+        {% csrf_token %}
         <div class="row">
           <div class="col-md-5">
             <input
@@ -24,13 +25,14 @@
               name="nome"
             />
           </div>
-
           <div class="col-md-4">
             <select class="form-select" name="tecnologias">
-              <option value="">--------</option>
+              <option value="">Filtre pela Tecnologia</option>
+              {% for tech in tecnologias%}
+              <option value="{{tech.id}}">{{tech}}</option>
+              {% endfor %}
             </select>
           </div>
-
           <div class="col-md-3">
             <input
               type="submit"
