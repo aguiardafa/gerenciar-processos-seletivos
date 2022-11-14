@@ -88,7 +88,8 @@
     </div>
 
     <div class="col-md">
-      <form>
+      <form action="{% url 'envia_email' vaga.id%}" method="POST">
+        {% csrf_token %}
         <label>Assunto:</label>
         <input
           name="assunto"

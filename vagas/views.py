@@ -4,6 +4,10 @@ from django.contrib import messages
 from django.contrib.messages import constants
 from empresa.models import Vagas
 from .models import Tarefa
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 # Create your views here.
 
@@ -84,3 +88,23 @@ def realizar_tarefa(request, id):
     messages.add_message(request, constants.SUCCESS,
                          'Tarefa realizada com sucesso, parabéns!')
     return redirect(f'/vagas/vaga/{tarefa.vaga.id}')
+
+
+def envia_email(request, id_vaga):
+    vaga = Vagas.objects.get(id=id_vaga)
+    assunto = request.POST.get('assunto')
+    corpo = request.POST.get('corpo')
+
+    html_content = render_to_string(
+        'emails/template_email.html', {'corpo': corpo})
+    text_content = strip_tags(html_content)
+    email = EmailMultiAlternatives(
+        assunto, text_content, settings.EMAIL_HOST_USER, [vaga.email, ])
+    email.attach_alternative(html_content, "text/html")
+    if email.send():
+        messages.add_message(request, constants.SUCCESS,
+                             'Email enviado com sucesso.')
+    else:
+        messages.add_message(request, constants.ERROR,
+                             'Erro interno do sistema!')
+    return redirect(f'/vagas/vaga/{id_vaga}')
